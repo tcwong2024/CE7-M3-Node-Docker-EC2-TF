@@ -42,5 +42,5 @@ variable "subnet_name" {
 variable "sg_name" {
   description = "Name of security group to create"
   type        = string
-  default     = "wtc-eom2-nv-ssh-http-https"
+  default     = "wtc-module-create-sg"
 }
