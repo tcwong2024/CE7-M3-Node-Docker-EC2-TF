@@ -8,13 +8,13 @@ on:
     paths:
       - terraform/**
 
-  pull_request:
-    branches:
-      - main
-    types:
-      - closed  #test
-    paths:
-      - terraform/**
+  # pull_request:
+  #   branches:
+  #     - main
+  #   types:
+  #     - closed  #test
+  #   paths:
+  #     - terraform/**
 
 jobs:
   Terraform-Create-And-Destroy:
