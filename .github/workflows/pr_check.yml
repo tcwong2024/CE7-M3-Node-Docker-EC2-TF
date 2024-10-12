@@ -1,4 +1,4 @@
-name: Terraform Checks
+name: Pull Request Checks
 run-name: Running Terraform Checks by ${{ github.actor }}
 
 on:

@@ -1,4 +1,5 @@
-name: Terraform Apply & Destroy 
+# name: Terraform Apply & Destroy 
+name: Push Create 
 run-name: Running Terraform Apply & Destroy by ${{ github.actor }}
 
 on:
