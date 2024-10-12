@@ -17,6 +17,8 @@ jobs:
  Terraform-Checks:
    runs-on: ubuntu-latest
    needs: Initial-Checks
+   outputs:
+    status: ${{ job.status }}
 
    steps:
    - name: Checkout
