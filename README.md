@@ -5,4 +5,6 @@ Learn how to deploy node application using github repository and creating docker
 
 - Create "terraform" folder contain all the terraform file use to upload docker image to ECR and create EC2 instance.
 
-- git push will trigger all github workflows to perform the tasks.
+- git push will trigger all github workflows to perform the tasks. 
+
+- Run
