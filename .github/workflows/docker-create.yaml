@@ -1,4 +1,4 @@
-name: Docker Create Apply & Destroy
+name: Docker Create
 run-name: Running Docker Image Creation by ${{ github.actor }}
 
 env: 
