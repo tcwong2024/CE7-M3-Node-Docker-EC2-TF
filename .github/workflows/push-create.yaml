@@ -12,7 +12,7 @@ on:
     branches:
       - main
     types:
-      - closed  # This runs the workflow when the pull request is merged or closed
+      - closed  
     paths:
       - terraform/**
 
