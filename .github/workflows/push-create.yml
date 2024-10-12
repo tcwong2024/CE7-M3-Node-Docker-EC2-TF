@@ -24,8 +24,7 @@ jobs:
     #   status: ${{ job.status }}
     defaults:
       run:
-        # working-directory: terraform
-        working-directory: ./terraform
+        working-directory: terraform
 
     steps:
     - name: Checkout
