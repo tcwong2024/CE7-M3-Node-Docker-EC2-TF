@@ -12,7 +12,7 @@ variable "vpc_name" {
 variable "ec2_name" {
   description = "Name of EC2"
   type        = string
-  default     = "wtc-ec2-for-docker"
+  default     = "wtc-docker-ecr-ec2"
 }
 
 variable "env" {
@@ -42,5 +42,5 @@ variable "subnet_name" {
 variable "sg_name" {
   description = "Name of security group to create"
   type        = string
-  default     = "wtc-module-create-sg"
+  default     = "wtc-docker-ecr-ec2-sg"
 }

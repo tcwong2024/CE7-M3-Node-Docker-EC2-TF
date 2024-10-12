@@ -1,4 +1,4 @@
-name: Terraform Apply & Destroy
+name: Terraform Apply & Destroy 
 run-name: Running Terraform Apply & Destroy by ${{ github.actor }}
 
 on:
@@ -45,3 +45,22 @@ jobs:
 
     - name: Terraform Destroy
       run: terraform destroy -no-color -auto-approve
+
+  Summary:
+        needs: [Terraform-Create-And-Destroy]
+        runs-on: ubuntu-latest
+        steps:
+          - name: Adding markdown
+            run: |
+              TF_STATUS=${{ needs.Terraform-Create-And-Destroy.outputs.status }}
+    
+              echo '## 🚀 Preparing Build Summary 🚀' >> $GITHUB_STEP_SUMMARY
+              echo '' >> $GITHUB_STEP_SUMMARY
+    
+              echo "| Job Name        | Status |" >> $GITHUB_STEP_SUMMARY
+              echo "|-----------------|--------|" >> $GITHUB_STEP_SUMMARY
+              echo "| tf-create       | $TF_STATUS |" >> $GITHUB_STEP_SUMMARY
+              echo "| tf-destroy       | $TF_STATUS |" >> $GITHUB_STEP_SUMMARY
+              echo '' >> $GITHUB_STEP_SUMMARY
+    
+              echo '## Job ran by: ${{ github.actor }}' >> $GITHUB_STEP_SUMMARY
