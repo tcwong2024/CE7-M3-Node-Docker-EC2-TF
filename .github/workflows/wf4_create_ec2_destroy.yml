@@ -1,4 +1,4 @@
-name: WF3 Create EC2 Terraform Destroy
+name: WF4 Create EC2 Terraform Destroy
 run-name: Running Create EC2 Terraform Destroy by ${{ github.actor }}
 
 on:
@@ -41,8 +41,8 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
 
-      #   - name: Terraform Init
-      #     run: terraform init
+      - name: Terraform Init
+        run: terraform init
 
       #   - name: Terraform Validate
       #     run: terraform validate
@@ -74,7 +74,6 @@ jobs:
 
           echo "| Job Name        | Status |" >> $GITHUB_STEP_SUMMARY
           echo "|-----------------|--------|" >> $GITHUB_STEP_SUMMARY
-          echo "| tf-create       | $TF_STATUS |" >> $GITHUB_STEP_SUMMARY
           echo "| tf-destroy       | $TF_STATUS |" >> $GITHUB_STEP_SUMMARY
           echo '' >> $GITHUB_STEP_SUMMARY
 
