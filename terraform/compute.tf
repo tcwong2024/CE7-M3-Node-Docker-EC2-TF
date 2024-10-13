@@ -73,4 +73,8 @@ resource "aws_security_group" "my_sg" {
 
 resource "aws_ecrpublic_repository" "my_public_repo" {
   repository_name = var.ecr_repo_name
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
