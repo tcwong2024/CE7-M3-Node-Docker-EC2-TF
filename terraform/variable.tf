@@ -44,3 +44,9 @@ variable "sg_name" {
   type        = string
   default     = "wtc-docker-ecr-ec2-sg"
 }
+
+variable "ecr_repo_name" {
+  description = "Name of ECR public repository name"
+  type        = string
+  default     = "wtc-node-docker-app"
+}

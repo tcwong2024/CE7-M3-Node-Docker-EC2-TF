@@ -37,6 +37,10 @@ resource "aws_security_group" "my_sg" {
   name   = var.sg_name
   vpc_id = data.aws_vpc.selected_vpc.id # var.vpc_id
 
+  tags = {
+    Name = var.sg_name
+  }
+
   ingress {
     from_port   = 22
     to_port     = 22
@@ -65,4 +69,8 @@ resource "aws_security_group" "my_sg" {
     cidr_blocks      = ["0.0.0.0/0"]
     ipv6_cidr_blocks = ["::/0"]
   }
+}
+
+resource "aws_ecr_repository" "my_repo" {
+  name = var.ecr_repo_name
 }
