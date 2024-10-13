@@ -3,11 +3,13 @@ name: Push Create
 run-name: Running Terraform Apply & Destroy by ${{ github.actor }}
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - terraform/**
+  workflow_dispatch:
+    
+  # push:
+  #   branches:
+  #     - main
+  #   paths:
+  #     - terraform/**
 
   # pull_request:
   #   branches:
