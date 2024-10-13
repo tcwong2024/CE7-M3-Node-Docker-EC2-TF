@@ -71,6 +71,6 @@ resource "aws_security_group" "my_sg" {
   }
 }
 
-resource "aws_ecr_repository" "my_repo" {
-  name = var.ecr_repo_name
+resource "aws_ecrpublic_repository" "my_public_repo" {
+  repository_name = var.ecr_repo_name
 }
