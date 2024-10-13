@@ -7,4 +7,6 @@ Learn how to deploy node application using github repository and creating docker
 
 - git push will trigger all github workflows to perform the tasks. 
 
+- Add git tag ```git push origin v1.0.1```
+
 - Run this workflows and verify. 
