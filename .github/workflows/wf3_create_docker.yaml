@@ -57,12 +57,16 @@ jobs:
       run: aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/sctp-sandbox
   
     - name: Docker build and tag
+      # run: |
+      #     docker build -t ${{ env.IMAGE_NAME }}:${{ needs.Get-Tag.outputs.LATEST_TAG }}.${{ github.run_number }} .
+      #     docker tag ${{ env.IMAGE_NAME }}:${{ needs.Get-Tag.outputs.LATEST_TAG }}.${{ github.run_number }} public.ecr.aws/sctp-sandbox/${{ env.IMAGE_NAME }}:${{ needs.Get-Tag.outputs.LATEST_TAG }}.${{ github.run_number }}
       run: |
-          docker build -t ${{ env.IMAGE_NAME }}:${{ needs.Get-Tag.outputs.LATEST_TAG }}.${{ github.run_number }} .
-          docker tag ${{ env.IMAGE_NAME }}:${{ needs.Get-Tag.outputs.LATEST_TAG }}.${{ github.run_number }} public.ecr.aws/sctp-sandbox/${{ env.IMAGE_NAME }}:${{ needs.Get-Tag.outputs.LATEST_TAG }}.${{ github.run_number }}
+          docker build -t ${{ env.IMAGE_NAME }}:${{ needs.Get-Tag.outputs.LATEST_TAG }} .
+          docker tag ${{ env.IMAGE_NAME }}:${{ needs.Get-Tag.outputs.LATEST_TAG }} public.ecr.aws/sctp-sandbox/${{ env.IMAGE_NAME }}:${{ needs.Get-Tag.outputs.LATEST_TAG }}
   
     - name: Docker publish to ECR
-      run: docker push public.ecr.aws/sctp-sandbox/${{ env.IMAGE_NAME }}:${{ needs.Get-Tag.outputs.LATEST_TAG }}.${{ github.run_number }}
+      # run: docker push public.ecr.aws/sctp-sandbox/${{ env.IMAGE_NAME }}:${{ needs.Get-Tag.outputs.LATEST_TAG }}.${{ github.run_number }}
+      run: docker push public.ecr.aws/sctp-sandbox/${{ env.IMAGE_NAME }}:${{ needs.Get-Tag.outputs.LATEST_TAG }}
 
   Summary:
     needs: [Docker-Image-Create-And-Publish]
