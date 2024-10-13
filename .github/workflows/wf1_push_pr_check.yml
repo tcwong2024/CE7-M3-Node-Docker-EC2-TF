@@ -1,5 +1,5 @@
-name: Pull Request Checks
-run-name: Running Terraform Checks by ${{ github.actor }}
+name: WF1 Push or PR Checks
+run-name: Running Push or PR Checks by ${{ github.actor }}
 
 on:
   push:

@@ -1,0 +1,81 @@
+name: WF3 Create EC2 Terraform Destroy
+run-name: Running Create EC2 Terraform Destroy by ${{ github.actor }}
+
+on:
+  workflow_dispatch:
+
+  # push:
+  #   branches:
+  #     - main
+  #   paths:
+  #     - terraform/**
+
+  # pull_request:
+  #   branches:
+  #     - main
+  #   types:
+  #     - closed  #test
+  #   paths:
+  #     - terraform/**
+
+jobs:
+  Create-EC2-Terraform-Destroy:
+    runs-on: ubuntu-latest
+    outputs:
+      status: ${{ job.status }}
+    defaults:
+      run:
+        working-directory: terraform
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      #   - name: Terraform Init
+      #     run: terraform init
+
+      #   - name: Terraform Validate
+      #     run: terraform validate
+
+      #   - name: Terraform Apply
+      #     run: terraform apply -no-color -auto-approve
+
+      #   - name: Export terraform outputs
+      #     id: tfout
+      #     run: |
+      #       terraform output
+
+      - name: Wait for 30 Sec
+        run: sleep 30
+
+      - name: Terraform Destroy
+        run: terraform destroy -no-color -auto-approve
+
+  Summary:
+    needs: [Create-EC2-Terraform-Destroy]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Adding markdown
+        run: |
+          TF_STATUS=${{ needs.Create-EC2-Terraform-Destroy.outputs.status }}
+
+          echo '## 🚀 Preparing Build Summary 🚀' >> $GITHUB_STEP_SUMMARY
+          echo '' >> $GITHUB_STEP_SUMMARY
+
+          echo "| Job Name        | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|-----------------|--------|" >> $GITHUB_STEP_SUMMARY
+          echo "| tf-create       | $TF_STATUS |" >> $GITHUB_STEP_SUMMARY
+          echo "| tf-destroy       | $TF_STATUS |" >> $GITHUB_STEP_SUMMARY
+          echo '' >> $GITHUB_STEP_SUMMARY
+
+          echo '## Job ran by: ${{ github.actor }}' >> $GITHUB_STEP_SUMMARY

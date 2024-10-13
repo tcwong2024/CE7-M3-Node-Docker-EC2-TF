@@ -1,10 +1,9 @@
-# name: Terraform Apply & Destroy
-name: Push Create
-run-name: Running Terraform Apply & Destroy by ${{ github.actor }}
+name: WF2 Create EC2 Terraform Apply
+run-name: Running Create EC2 Terraform Apply by ${{ github.actor }}
 
 on:
   workflow_dispatch:
-    
+
   # push:
   #   branches:
   #     - main
@@ -20,7 +19,7 @@ on:
   #     - terraform/**
 
 jobs:
-  Terraform-Create-And-Destroy:
+  Create-EC2-Terraform-Apply:
     runs-on: ubuntu-latest
     outputs:
       status: ${{ job.status }}
@@ -56,19 +55,19 @@ jobs:
         run: |
           terraform output
 
-      - name: Wait for 2min
-        run: sleep 120
+      # - name: Wait for 2min
+      #   run: sleep 120
 
-      - name: Terraform Destroy
-        run: terraform destroy -no-color -auto-approve
+      # - name: Terraform Destroy
+      #   run: terraform destroy -no-color -auto-approve
 
   Summary:
-    needs: [Terraform-Create-And-Destroy]
+    needs: [Create-EC2-Terraform-Apply]
     runs-on: ubuntu-latest
     steps:
       - name: Adding markdown
         run: |
-          TF_STATUS=${{ needs.Terraform-Create-And-Destroy.outputs.status }}
+          TF_STATUS=${{ needs.Create-EC2-Terraform-Apply.outputs.status }}
 
           echo '## 🚀 Preparing Build Summary 🚀' >> $GITHUB_STEP_SUMMARY
           echo '' >> $GITHUB_STEP_SUMMARY
